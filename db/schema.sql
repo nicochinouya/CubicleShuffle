@@ -1,49 +1,40 @@
--- Drop the existing database if it exists
-DROP DATABASE IF EXISTS employee_DB;
+-- Drop the database if it already exists
+DROP DATABASE IF EXISTS employee_management_db;
 
--- Create a new database called employee_DB
-CREATE DATABASE employee_DB;
+-- Create a new database
+CREATE DATABASE employee_management_db;
 
--- Use the employee_DB database
-USE employee_DB;
+-- Use the newly created database
+USE employee_management_db;
 
--- Create a table called department
--- This table stores information about different departments in the company
-CREATE TABLE department(
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(30) NOT NULL
+-- Create the department table
+-- department: id as PRIMARY KEY, name as VARCHAR(30) to hold department name
+CREATE TABLE department (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(30) NOT NULL,
+    PRIMARY KEY (id)
 );
 
--- Create a table called role
--- This table stores information about different roles in the company
--- Each role is associated with a department through the department_id foreign key
-CREATE TABLE role(
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    title VARCHAR(30),
+-- Create the role table
+-- role: id as PRIMARY KEY, title as VARCHAR(30) to hold role title, salary as DECIMAL to hold role salary, department_id as INT to hold reference to department role belongs to
+CREATE TABLE role (
+    id INT NOT NULL AUTO_INCREMENT,
+    title VARCHAR(30) NOT NULL,
     salary DECIMAL(10,2) NOT NULL,
     department_id INT NOT NULL,
-    CONSTRAINT fk_department FOREIGN KEY (department_id) REFERENCES department(id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (department_id) REFERENCES department(id)
 );
 
--- Create a table called employee
--- This table stores information about employees in the company
--- Each employee is associated with a role through the role_id foreign key
--- Each employee can have a manager, which is represented by the manager_id foreign key
-CREATE TABLE employee(
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+-- Create the employee table
+-- employee: id as PRIMARY KEY, first_name as VARCHAR(30) to hold employee first name, last_name as VARCHAR(30) to hold employee last name, role_id as INT to hold reference to employee role, manager_id as INT to hold reference to another employee that manages the current employee (null if the employee has no manager)
+CREATE TABLE employee (
+    id INT NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     role_id INT NOT NULL,
-    manager_id INT, 
+    manager_id INT,
+    PRIMARY KEY (id),
     FOREIGN KEY (role_id) REFERENCES role(id),
     FOREIGN KEY (manager_id) REFERENCES employee(id)
 );
-
--- Retrieve all records from the department table
-SELECT * FROM department;
-
--- Retrieve all records from the role table
-SELECT * FROM role;
-
--- Retrieve all records from the employee table
-SELECT * FROM employee;
