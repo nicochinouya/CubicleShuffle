@@ -4,67 +4,80 @@
 
 This repository contains SQL scripts to set up a database with departments, roles, and employees, all themed around the Star Wars universe.
 
-## Table of Contents
 
-- [Prerequisites](#prerequisites)
-- [Database Structure](#database-structure)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+## 🚀 Description
 
-## Prerequisites
+With this applicaion, user can:
+- view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
+-  showing department names and department ids
+- view all roles' job title, role id, the department that role belongs to, and the salary for that role
+- view a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
+- view department infomation
+- add a role, an employee or a department
+- remove a role, an employee or a department
+- view the total utilized budget of a department—in other words, the combined salaries of all employees in that department
 
-Before you begin, ensure you have the following installed:
-- A SQL database system (e.g., MySQL, PostgreSQL)
-- A SQL client or command-line interface to run the SQL scripts
 
-## Database Structure
+## 🛠 Technologies 
 
-The database consists of three tables:
-1. **department**: Stores the names of the departments.
-2. **role**: Stores the roles, their salaries, and their corresponding department IDs.
-3. **employee**: Stores the employees' first names, last names, and their corresponding role IDs.
+**Runtime:** Node.js
 
-## Installation
+**Lanuage:** Javascript
 
-To set up the database, follow these steps:
+**Dependencies:** 
 
-1. Create the **department** table:
-   
-2. Create the **role** table:
+    "console.table": "^0.10.0",
+    "inquirer": "^8.2.4",
+    "mysql2": "^3.0.1",
+    "express": "^4.17.1"
 
-3. Create the **employee** table:
 
-4. Populate the **department** table with Star Wars-themed departments:
+## 💾 Installation
 
-5. Populate the **role** table with Star Wars-themed roles and their corresponding department IDs:
 
-6. Populate the **employee** table with Star Wars-themed employees and their corresponding role IDs:
-   
+With the package.json file, use jest to excute the tests in the terminal by the following command:
+```
+npm i
+```
+
+Or install all the following dependencices:
+```
+npm instal console.table
+
+npm install inquirer
+
+npm install mysql2
+
+npm install express
+```
+For npm scripts:
+```
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  }
+```
 ## Usage
 
-Once the database is set up, you can query the tables to retrieve information about the departments, roles, and employees. For example:
+To excute MySQL shell in the terminal by the following command:
+```
+mysql -u root
+```
+or if you have a password for database try:
+```
+mysql -u root -p
+```
+then source the schema file:
+```
+SOURCE db/schema.sql;
+```
+To seed the database:
+```
+SOURCE db/seeds.sql;
+```
+To run the application:
+```
+node index.js
+```
 
-- To get all employees and their roles:
-    
-    SELECT e.first_name, e.last_name, r.title
-    FROM employee e
-    JOIN role r ON e.role_id = r.id;
-    
 
-- To get all roles in the "Starship Engineering" department:
-    
-    SELECT r.title, r.salary
-    FROM role r
-    JOIN department d ON r.department_id = d.id
-    WHERE d.name = 'Starship Engineering';
-    ```
-
-## Contributing
-
-If you would like to contribute to this project, please fork the repository and submit a pull request with your changes.
-
-## License
-
-This project is open source and available under the MIT License.

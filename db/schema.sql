@@ -1,11 +1,11 @@
 -- Drop the database if it already exists
-DROP DATABASE IF EXISTS employee_management_db;
+DROP DATABASE IF EXISTS employee_db;
 
 -- Create a new database
-CREATE DATABASE employee_management_db;
+CREATE DATABASE employee_db;
 
 -- Use the newly created database
-USE employee_management_db;
+USE employee_db;
 
 -- Create the department table
 -- department: id as PRIMARY KEY, name as VARCHAR(30) to hold department name
